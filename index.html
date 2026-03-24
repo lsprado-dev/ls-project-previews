@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS Previews | Project Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1d;
+            --text-color: #f1f1f1;
+            --accent-color: #ffc107;
+            --card-bg: #252529;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #d1d1d1;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-preview {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .card:hover .btn-preview {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Project Preview Portal</h1>
+        <p class="subtitle">A curated list of web development cases and staging environments.</p>
+
+        <div class="grid">
+            <a href="./innovative-business/" class="card">
+                <h3>Innovative Business</h3>
+                <p>Corporate platform focused on high-performance sales and marketing integration.</p>
+                <div class="btn-preview">View Case Study</div>
+            </a>
+
+            <a href="./oliveira-sales/" class="card">
+                <h3>Oliveira & Sales</h3>
+                <p>Modern legal and consulting web presence with a focus on authority and clean UI.</p>
+                <div class="btn-preview">View Case Study</div>
+            </a>
+            
+            <div class="card" style="opacity: 0.5; cursor: default;">
+                <h3>Next Project</h3>
+                <p>New marketing-driven solutions are currently under development. Stay tuned.</p>
+                <div class="btn-preview" style="border-color: #444; color: #444;">Coming Soon</div>
+            </div>
+        </div>
+
+        <footer>
+            Developed with strategy by Lucas Prado &copy; 2026
+        </footer>
+    </div>
+
+</body>
+</html>
