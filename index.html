@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ================= VARIÁVEIS ================= */
         :root {
             --bg-main: #0f0e17;       
             --bg-secondary: #1a1a2e;  
@@ -27,19 +28,52 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            position: relative;
         }
 
-        a { text-decoration: none; transition: var(--transition); }
+        a { 
+            text-decoration: none; 
+            transition: var(--transition); 
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ================= CABEÇALHO & IDIOMAS ================= */
+        header.dashboard-header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(127, 90, 240, 0.1);
+            background-color: var(--bg-secondary);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-to-portfolio {
+            color: var(--purple-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-portfolio:hover {
+            color: var(--text-light);
+            text-shadow: 0 0 10px var(--purple-primary);
+        }
 
         .lang-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            z-index: 100;
         }
 
         .lang-switcher label {
@@ -51,10 +85,12 @@
             gap: 5px;
         }
 
-        .lang-switcher label i { color: var(--purple-primary); }
+        .lang-switcher label i {
+            color: var(--purple-primary);
+        }
 
         .custom-select-wrapper select {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-main);
             color: var(--text-light);
             border: 1px solid var(--purple-primary);
             padding: 6px 35px 6px 12px;
@@ -73,62 +109,61 @@
             background-size: 10px auto;
         }
 
-        header.dashboard-header {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(127, 90, 240, 0.1);
-            background-color: var(--bg-secondary);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .back-to-portfolio {
-            color: var(--purple-primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        /* ================= CONTEÚDO PRINCIPAL (DASHBOARD) ================= */
         main.dashboard-main {
             flex-grow: 1;
             padding: 4rem 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
 
-        .dashboard-content {
+        .hero-section {
             text-align: center;
+            margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        h1.dashboard-title { font-size: 2.5rem; margin-bottom: 1rem; }
-        .purple-text { color: var(--purple-primary); }
-        p.dashboard-subtitle { color: var(--text-gray); font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem auto; }
+        h1.dashboard-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
 
+        .purple-text {
+            color: var(--purple-primary);
+        }
+
+        p.dashboard-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ================= GRID DE CARTÕES ================= */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            justify-content: center;
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
         }
 
         .project-card {
             background-color: var(--bg-secondary);
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 16px;
             border: 1px solid rgba(127, 90, 240, 0.1);
             transition: var(--transition);
@@ -136,6 +171,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-height: 280px;
         }
 
         .project-card:hover {
@@ -144,80 +180,115 @@
             box-shadow: 0 10px 30px -10px var(--purple-glow);
         }
 
-        .card-header h3 { margin-top: 1rem; font-size: 1.4rem; color: var(--text-light); }
-        .card-header i.purple-icon { color: var(--purple-primary); font-size: 1.5rem; }
-        .project-card p { color: var(--text-gray); font-size: 0.95rem; margin: 1.5rem 0; line-height: 1.6; }
-        
+        .card-header h3 {
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            color: var(--text-light);
+        }
+
+        .card-header i.purple-icon {
+            color: var(--purple-primary);
+            font-size: 1.8rem;
+        }
+
+        .project-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
         .btn-view-case {
             color: var(--purple-primary);
             font-weight: 600;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            margin-top: auto;
         }
 
+        .project-card:hover .btn-view-case {
+            color: var(--text-light);
+            text-shadow: 0 0 10px var(--purple-primary);
+        }
+
+        /* ================= RODAPÉ ================= */
         footer {
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid rgba(127, 90, 240, 0.1);
             color: var(--text-gray);
             font-size: 0.9rem;
+            background-color: var(--bg-main);
         }
 
+        /* ================= RESPONSIVO MOBILE ================= */
         @media (max-width: 768px) {
-            .lang-switcher { top: 70px; right: 20px; }
+            .header-content {
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            h1.dashboard-title {
+                font-size: 2rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="lang-switcher">
-        <label for="lang-select" data-i18n="lang_label"><i class="fas fa-globe"></i> Idioma:</label>
-        <div class="custom-select-wrapper">
-            <select id="lang-select" onchange="changeLanguage(this.value)">
-                <option value="pt">Português (PT)</option>
-                <option value="en">English (EN)</option>
-                <option value="es">Español (ES)</option>
-                <option value="pl">Polski (PL)</option>
-            </select>
-        </div>
-    </div>
-
     <header class="dashboard-header">
-        <div class="container">
+        <div class="container header-content">
             <a href="../lspradoo.github.io/" class="back-to-portfolio" data-i18n="back_portfolio">
                 <i class="fas fa-arrow-left"></i> Lucas Prado | Portfolio
             </a>
-            <i class="fas fa-layer-group purple-icon" style="color:var(--purple-primary)"></i>
+            
+            <div class="lang-switcher">
+                <label for="lang-select" data-i18n="lang_label"><i class="fas fa-globe"></i> Idioma:</label>
+                <div class="custom-select-wrapper">
+                    <select id="lang-select" onchange="changeLanguage(this.value)">
+                        <option value="pt">Português (PT)</option>
+                        <option value="en">English (EN)</option>
+                        <option value="es">Español (ES)</option>
+                        <option value="pl">Polski (PL)</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="dashboard-main">
-        <div class="container dashboard-content">
+    <main class="dashboard-main container">
+        
+        <div class="hero-section">
             <h1 class="dashboard-title" data-i18n="dash_title">Portal de <span class="purple-text">Previews</span></h1>
             <p class="dashboard-subtitle" data-i18n="dash_subtitle">Ambiente exclusivo para visualização de projetos de clientes e cases finalizados.</p>
-
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-line purple-icon"></i>
-                        <h3>Innovative Business</h3>
-                    </div>
-                    <p data-i18n="ib_desc">Plataforma corporativa para escritório de contabilidade, focada em conversão e autoridade de marca.</p>
-                    <a href="./innovative-business/" class="btn-view-case" data-i18n="btn_case">Ver Case Study <i class="fas fa-arrow-right"></i></a>
-                </article>
-
-                <article class="project-card">
-                    <div class="card-header">
-                        <i class="fas fa-balance-scale purple-icon"></i>
-                        <h3>Oliveira & Sales</h3>
-                    </div>
-                    <p data-i18n="os_desc">Web presence para escritório de advocacia, projetada para transmitir confiança e agilizar o contato.</p>
-                    <a href="./oliveira-sales/" class="btn-view-case" data-i18n="btn_case">Ver Case Study <i class="fas fa-arrow-right"></i></a>
-                </article>
-            </div>
         </div>
+
+        <div class="projects-grid">
+            <article class="project-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-line purple-icon"></i>
+                    <h3>Innovative Business</h3>
+                </div>
+                <p data-i18n="ib_desc">Plataforma corporativa para escritório de contabilidade, focada em conversão e autoridade de marca.</p>
+                <a href="./innovative-business/" class="btn-view-case" data-i18n="btn_case">Ver Case Study <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="project-card">
+                <div class="card-header">
+                    <i class="fas fa-balance-scale purple-icon"></i>
+                    <h3>Oliveira & Sales</h3>
+                </div>
+                <p data-i18n="os_desc">Web presence para escritório de advocacia, projetada para transmitir confiança e agilizar o contato.</p>
+                <a href="./oliveira-sales/" class="btn-view-case" data-i18n="btn_case">Ver Case Study <i class="fas fa-arrow-right"></i></a>
+            </article>
+        </div>
+
     </main>
 
     <footer>
