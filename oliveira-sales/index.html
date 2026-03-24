@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        
+        /* ================= VARIÁVEIS ================= */
         :root {
             --bg-main: #0f0e17;       
             --bg-secondary: #1a1a2e;  
@@ -29,10 +29,59 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
         }
 
-        a { text-decoration: none; transition: var(--transition); }
+        a { 
+            text-decoration: none; 
+            transition: var(--transition); 
+        }
 
+        /* ================= SELETOR DE IDIOMAS ================= */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .lang-switcher label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-switcher label i {
+            color: var(--purple-primary);
+        }
+
+        .custom-select-wrapper select {
+            background-color: var(--bg-secondary);
+            color: var(--text-light);
+            border: 1px solid var(--purple-primary);
+            padding: 6px 35px 6px 12px;
+            border-radius: 6px;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%237f5af0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 10px auto;
+        }
+
+        /* ================= NAVEGAÇÃO ================= */
         .back-nav {
             position: absolute;
             top: 2rem;
@@ -52,6 +101,7 @@
             text-shadow: 0 0 10px var(--purple-primary);
         }
 
+        /* ================= CONTAINER DO CASE ================= */
         .case-container {
             background: linear-gradient(145deg, var(--bg-secondary) 0%, #110f18 100%);
             padding: 3rem;
@@ -81,7 +131,9 @@
             margin-bottom: 0.5rem;
         }
 
-        .purple-dot { color: var(--purple-primary); }
+        .purple-dot {
+            color: var(--purple-primary);
+        }
 
         p.case-status {
             color: var(--text-gray);
@@ -90,6 +142,7 @@
             line-height: 1.6;
         }
 
+        /* ================= DETALHES ================= */
         .case-details {
             list-style: none;
             padding: 0;
@@ -107,8 +160,11 @@
             gap: 10px;
         }
 
-        .case-details strong { color: var(--purple-primary); }
+        .case-details strong {
+            color: var(--purple-primary);
+        }
 
+        /* ================= BOTÃO CTA ================= */
         .btn-visit-live {
             background-color: var(--purple-primary);
             color: var(--text-light);
@@ -126,12 +182,31 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px var(--purple-glow);
         }
+
+        /* ================= RESPONSIVO ================= */
+        @media (max-width: 768px) {
+            .lang-switcher { top: 10px; right: 10px; }
+            .back-nav { top: 60px; left: 20px; }
+            .case-container { margin-top: 80px; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="lang-switcher">
+        <label for="lang-select" data-i18n="lang_label"><i class="fas fa-globe"></i> Idioma:</label>
+        <div class="custom-select-wrapper">
+            <select id="lang-select" onchange="changeLanguage(this.value)">
+                <option value="pt">Português (PT)</option>
+                <option value="en">English (EN)</option>
+                <option value="es">Español (ES)</option>
+                <option value="pl">Polski (PL)</option>
+            </select>
+        </div>
+    </div>
+
     <nav class="back-nav">
-        <a href="../" class="btn-back">
+        <a href="../" class="btn-back" data-i18n="back_portal">
             <i class="fas fa-layer-group"></i> Voltar ao Portal
         </a>
     </nav>
@@ -142,20 +217,21 @@
             <h1 class="case-title">Oliveira & Sales<span class="purple-dot">.</span></h1>
         </header>
 
-        <p class="case-status">Este ambiente foi utilizado com sucesso para o preview e testes finais do cliente. O projeto foi concluído e está 100% operacional no domínio oficial.</p>
+        <p class="case-status" data-i18n="status_msg">Este ambiente foi utilizado com sucesso para o preview e testes finais do cliente. O projeto foi concluído e está 100% operacional no domínio oficial.</p>
         
         <ul class="case-details">
-            <li><i class="fas fa-check purple-text" style="color:var(--purple-primary)"></i> <strong>Status:</strong> Projeto Entregue</li>
-            <li><i class="fas fa-shield-alt purple-text" style="color:var(--purple-primary)"></i> <strong>DNA Marketing:</strong> Design de Autoridade</li>
-            <li><i class="fas fa-user-tie purple-text" style="color:var(--purple-primary)"></i> <strong>Atuação:</strong> Escritório de Advocacia</li>
+            <li><i class="fas fa-check purple-text" style="color:var(--purple-primary)"></i> <span data-i18n="status_del"><strong>Status:</strong> Projeto Entregue</span></li>
+            <li><i class="fas fa-shield-alt purple-text" style="color:var(--purple-primary)"></i> <span data-i18n="dna_auth"><strong>DNA Marketing:</strong> Design de Autoridade</span></li>
+            <li><i class="fas fa-user-tie purple-text" style="color:var(--purple-primary)"></i> <span data-i18n="area_law"><strong>Atuação:</strong> Escritório de Advocacia</span></li>
         </ul>
 
         <footer class="case-footer">
-            <a href="https://www.oliveirasales.com.br/" target="_blank" class="btn-visit-live">
+            <a href="https://www.oliveirasales.com.br/" target="_blank" class="btn-visit-live" data-i18n="btn_live">
                 Visitar Site Oficial <i class="fas fa-external-link-alt"></i>
             </a>
         </footer>
     </main>
 
+    <script src="../script.js"></script>
 </body>
 </html>
